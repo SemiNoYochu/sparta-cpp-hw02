@@ -1,4 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
+
+#include "Player.h"
 
 void setPotion(int count, int* p_HPPotion, int* p_MPPotion);
 
@@ -6,6 +8,32 @@ int status[4] = { 0, };
 
 int main()
 {
+	Player* player = nullptr;
+
+	std::cout << "직업을 선택해주세요." << std::endl;
+	std::cout << "1. 전사 / 2.마법사 / 3.도적 / 4.궁수" << std::endl;
+
+	int menuNum = -1;
+	std::cin >> menuNum;
+
+	switch (menuNum)
+	{
+	case 1:
+		player = new Warrior();
+		player->attack();
+		break;
+	case 2:
+		player = new Magician();
+		player->attack();
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	default:
+		break;
+	}
+
 	std::cout << "Enter HP/MP over 50." << std::endl;
 	std::cin >> status[0] >> status[1];
 
@@ -46,7 +74,7 @@ int main()
 		}
 	}
 
-	int menuNum = 7;
+	menuNum = -1;
 
 	int hpPotion = 5;
 	int mpPotion = 5;
@@ -58,6 +86,8 @@ int main()
 
 		setPotion(menuNum, &hpPotion, &mpPotion);
 	}
+
+	delete player;
 
 	return 0;
 }
